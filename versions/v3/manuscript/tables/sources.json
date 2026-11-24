@@ -1,0 +1,29 @@
+[
+  {
+    "file": "b157100.txt",
+    "url": "https://oeis.org/A157100/b157100.txt",
+    "contributor": "G. C. Greubel",
+    "attribution": "OEIS Foundation Inc.",
+    "license": "CC-BY-SA-4.0",
+    "sha256": "621154f02e7db0d98534c358ece80c1ecf492fe4d7112689bbf512965be31711",
+    "retrieved": "2026-11-17"
+  },
+  {
+    "file": "b025262.txt",
+    "url": "https://oeis.org/A025262/b025262.txt",
+    "contributor": "Seiichi Manyama",
+    "attribution": "OEIS Foundation Inc.",
+    "license": "CC-BY-SA-4.0",
+    "sha256": "a94cb6c32e64eb948532697e03c4e68d69124f2bc2dc6f4706377a4d54dc6f67",
+    "retrieved": "2026-11-17"
+  },
+  {
+    "file": "b025268.txt",
+    "url": "https://oeis.org/A025268/b025268.txt",
+    "contributor": "Seiichi Manyama",
+    "attribution": "OEIS Foundation Inc.",
+    "license": "CC-BY-SA-4.0",
+    "sha256": "94bec6189535879653bc7d45a766226c8b31f76579cb1172b25d383730b45156",
+    "retrieved": "2026-11-17"
+  }
+]

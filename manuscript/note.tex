@@ -1,0 +1,531 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tabularx,longtable,array}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\coeff}[1]{[x^{#1}]}
+\title{A ratio correction and sibling identities for Mathar's Catalan-transform recurrence}
+\author{Haobo Ma\\
+  \small ChronoAI Pte Ltd, Singapore
+  \and Wenlin Zhang\\
+  \small National University of Singapore\\
+  \small ChronoAI Pte Ltd, Singapore}
+\date{17 November 2026}
+\hypersetup{pdftitle={A ratio correction and sibling identities for Mathar's Catalan-transform recurrence},
+  pdfauthor={Haobo Ma; Wenlin Zhang}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Using Mathar's root-generating-function theorem (2021, Theorem~5
+\cite{mathar}), we give an alternative coefficient proof of his conjecture
+in OEIS A157100, revision~14, FORMULA line~11 (5~February 2015), for
+every $n\geq4$.
+We correct the generating-function ratio accompanying its partial-sum
+description and extend the calculation to the adjacent sequence A025262:
+its linear recurrence implies Somos's bilinear identity by elimination of
+the index. The same radical identity proves Mathar's six-term conjecture
+for A025268 on its fully defined domain $n\geq6$.
+We also derive the related coefficient formulas, shifted generating
+functions, and the leading asymptotic constants.
+\end{abstract}
+
+\section{The recurrence}
+
+Let $C_k=\binom{2k}{k}/(k+1)$ and
+$C(z)=\sum_{k\geq0}C_kz^k$, so $C(z)=1+zC(z)^2$.
+All power series below belong to $\Q[[x]]$, and differentiation is formal.
+Define the Catalan transform introduced by Paul Barry in A157100
+\cite{oeisa} by
+\begin{equation}\label{eq:A}
+ A(x)=(1+x)C\bigl(x(1-x^2)\bigr)=\sum_{n\geq0}a_nx^n.
+\end{equation}
+Mathar's FORMULA assertion is explicitly labelled ``Conjecture'' at
+\href{https://raw.githubusercontent.com/oeis/oeisdata/57bbd254e161585873f56950ff19ba6dc4aeb66c/seq/A157/A157100.seq\#L11}
+{revision~14, line~11}. It states that these coefficients satisfy the displayed
+five-term recurrence. We prove it on the full domain where all five
+indices are nonnegative. The source gives offset zero but omits the
+onset; $n\geq4$ is this interpretation, rather than an additional quoted
+condition.
+
+Algebraic generating functions can be converted into polynomial-coefficient
+recurrences by differential equations; Ekhad, Yang and Zeilberger
+\cite{eyz} describe this method for Mathar's OEIS conjectures.
+Here the relevant general result is Mathar's Theorem~5
+\cite[\S4.2, equations (41)--(45)]{mathar}, with
+$p=1-4x+4x^3$, $q=2x(1-x)$, $w=1$, $v=-1$ and $r=2$.
+The proof below makes this specialization explicit and determines the
+initial values and the precise onset directly.
+
+\begin{theorem}\label{thm:main}
+The sequence defined by \eqref{eq:A} starts with
+$(a_0,a_1,a_2,a_3)=(1,2,3,6)$ and satisfies, for every integer $n\geq4$,
+\begin{equation}\label{eq:rec}
+\begin{split}
+ (n+1)a_n+(-5n+1)a_{n-1}
+ &+2(2n-1)a_{n-2}+2(2n-7)a_{n-3}\\
+ &+2(-2n+7)a_{n-4}=0.
+\end{split}
+\end{equation}
+These four initial values and \eqref{eq:rec} determine the sequence uniquely.
+\end{theorem}
+
+\begin{proof}
+Put $t=x(1-x^2)$, $q_0=x(1-x)$ and $D=1-4x+4x^3$.
+Since $t(0)=0$, substitution into the Catalan equation is defined.
+The series $s=1-2tC(t)=1-2q_0A$ has constant coefficient $1$ and satisfies
+$s^2=1-4t=D$. Thus it is the unique square root of $D$ with
+constant coefficient $1$, and
+\begin{equation}\label{eq:radical}
+ 2q_0A=1-s,\qquad D s'=\tfrac12D's.
+\end{equation}
+For the second identity, differentiate $s^2=D$ and multiply by $s$.
+Differentiating the first identity and multiplying by $D$ now gives
+\[
+ 2q_0D A'+2q_0'D A=-\tfrac12D's
+                 =-\tfrac12D'+D'q_0A.
+\]
+Consequently,
+\begin{equation}\label{eq:ode}
+ P(x)\,xA'(x)+Q(x)\,A(x)=1-3x^2,
+\end{equation}
+where direct polynomial multiplication yields
+\begin{align*}
+ P&=(1-x)D=1-5x+4x^2+4x^3-4x^4,\\
+ Q&=Dq_0'-\tfrac12D'q_0
+       =1-4x+6x^2-2x^3-2x^4.
+\end{align*}
+This calculation takes place in formal series; it requires no analytic
+convergence or division by $x$.
+
+For $n\geq4$ and $0\leq j\leq4$,
+$\coeff{n}x^j(xA')=(n-j)a_{n-j}$ and
+$\coeff{n}x^jA=a_{n-j}$. The coefficient of $a_{n-j}$ on the left of
+\eqref{eq:ode} is therefore $(n-j)P_j+Q_j$, where
+$P_j=\coeff{j}P$ and $Q_j=\coeff{j}Q$:
+\[
+\begin{array}{c|rrrrr}
+ j&0&1&2&3&4\\ \hline
+ P_j&1&-5&4&4&-4\\
+ Q_j&1&-4&6&-2&-2\\
+ (n-j)P_j+Q_j&n+1&-5n+1&4n-2&4n-14&-4n+14
+\end{array}
+\]
+The right side has coefficient zero for these $n$, proving
+\eqref{eq:rec}. Expansion of \eqref{eq:A} through degree three gives
+the stated initial values. Finally $n+1\ne0$ for $n\geq4$, so each
+successive term is uniquely determined.
+\end{proof}
+
+For clarity about small indices, extend $a_j=0$ for $j<0$.
+The left side of \eqref{eq:rec} then equals
+$\mathbf1_{n=0}-3\mathbf1_{n=2}$ for every $n\geq0$.
+Thus the zero-extended homogeneous formula fails at $n=0$ and $n=2$;
+this does not affect the five nonnegative-index assertion.
+
+\section{Coefficient formulas and the partial-sum relation}
+
+The adjacent formulas in the source follow without another differential
+equation argument. Write $D=1-4x+4x^3$ and let $s=\sqrt D$
+denote its square root with constant coefficient one. Set
+\[
+ B(x)=\frac{1-s}{2}=x(1-x)A(x)=\sum_{m\geq1}b_mx^m.
+\]
+This is the generating function of the offset-one sequence A025262
+\cite{oeisb}. In particular $b_1=b_2=b_3=1$.
+
+\begin{corollary}\label{cor:coeff}
+For $n\geq0$ and $m\geq1$, with $\binom{k}{j}=0$ for $j>k$,
+\begin{align}
+ a_n&=\sum_{k=0}^n
+ (-1)^{\binom{n-k}{2}}\binom{k}{\lfloor(n-k)/2\rfloor}C_k,
+       \label{eq:asum}\\
+ b_m&=\sum_{j=0}^{\lfloor(m-1)/2\rfloor}
+ (-1)^j\binom{m-2j}{j}C_{m-2j-1},\label{eq:bsum}\\
+ a_n&=\sum_{m=1}^{n+1}b_m.\label{eq:partial}
+\end{align}
+The coefficients $b_m$ are positive, and $a_n$ is positive and strictly
+increasing. Moreover, for $m\geq4$,
+\begin{equation}\label{eq:brec}
+ m b_m=2(2m-3)b_{m-1}-2(2m-9)b_{m-3}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+In \eqref{eq:A}, expand
+$C(t)=\sum_{k\geq0}C_kx^k\sum_{j=0}^k(-1)^j\binom{k}{j}x^{2j}$.
+A contribution to $a_n$ has $n-k=2j$ or $2j+1$, according to
+which term of $1+x$ is used. In either case
+$j=\lfloor(n-k)/2\rfloor$ and
+$\binom{n-k}{2}\equiv j\pmod2$. This proves \eqref{eq:asum}.
+Likewise $B=tC(t)=\sum_{k\geq1}C_{k-1}x^k(1-x^2)^k$;
+putting $k=m-2j$ gives \eqref{eq:bsum}. Terms with $j>k$ vanish
+by the binomial convention.
+
+Since $B/x$ is a power series, the identity
+$A=(B/x)/(1-x)$ proves \eqref{eq:partial}, including its upper
+index $n+1$. Also $B-B^2=x-x^3$, whence
+$b_m=\sum_{i=1}^{m-1}b_ib_{m-i}$ for $m\geq4$.
+Starting with $b_1=b_2=b_3=1$, induction proves positivity;
+\eqref{eq:partial} gives $a_0=1$ and
+$a_n-a_{n-1}=b_{n+1}>0$ for $n\geq1$.
+Finally \eqref{eq:radical} implies
+\[
+ D B'+(2-6x^2)B=1-3x^2.
+\]
+The coefficient of $x^{m-1}$ is zero for $m\geq4$ and is
+$m b_m+(-4m+6)b_{m-1}+(4m-18)b_{m-3}$, proving
+\eqref{eq:brec}.
+\end{proof}
+
+Equation \eqref{eq:bsum} is Kruchinin's 2013 formula in A025262;
+\eqref{eq:brec} is Kotesovec's 2015 recurrence there.
+The 27~June 2022 comment by Irvine and Mathar in A157100
+correctly states the partial-sum relation, but the printed
+generating-function ratio has its direction reversed. With the source's
+offsets it is
+\[
+ \frac{A(x)}{B(x)}=\frac1{x(1-x)},\qquad
+ \frac{B(x)}{A(x)}=x(1-x),
+\]
+where the first ratio is interpreted in $\Q((x))$.
+For the zero-based series $\widetilde B=B/x$, the ratio is instead
+$A/\widetilde B=1/(1-x)$.
+
+There is also a short route from these earlier formulas to the main
+recurrence. The partial-sum relation gives
+$b_{n+1}=a_n-a_{n-1}$. Substitution into Kotesovec's recurrence
+at $m=n+1$ gives
+\[
+ (n+1)(a_n-a_{n-1})-(4n-2)(a_{n-1}-a_{n-2})
+ +(4n-14)(a_{n-3}-a_{n-4})=0,
+\]
+which expands to \eqref{eq:rec} for $n\geq4$.
+
+\section{Further consequences of the same radical}
+
+\subsection{Somos's bilinear identity}
+
+The following is the formula signed by Somos on 18~January 2015 in
+A025262, FORMULA line~19, and in A056010 \cite{oeisb,oeisl}.
+
+\begin{corollary}\label{cor:bilinear}
+For every $n\geq1$,
+\begin{equation}\label{eq:bilinear}
+\begin{split}
+0={}&b_n(16b_{n+1}-64b_{n+3}+22b_{n+4})
+       +b_{n+1}(32b_{n+2}-14b_{n+3})\\
+   &+b_{n+2}(16b_{n+3}-10b_{n+4})
+       +b_{n+3}(2b_{n+3}+b_{n+4}).
+\end{split}
+\end{equation}
+\end{corollary}
+\begin{proof}
+Write $u_j=b_{n+j}$ for $0\leq j\leq4$. Applying
+\eqref{eq:brec} at $n+3$ and $n+4$ gives
+\[
+ n(u_3-4u_2+4u_0)=-3u_3+6u_2+6u_0,
+ \qquad
+ n(u_4-4u_3+4u_1)=-4u_4+10u_3+2u_1.
+\]
+Multiply the first right side by $u_4-4u_3+4u_1$, subtract
+the second right side times $u_3-4u_2+4u_0$, and expand.
+The result is exactly \eqref{eq:bilinear}. No division is required,
+so vanishing factors cause no exceptional cases.
+\end{proof}
+
+\subsection{Shifted coefficients and row sums}
+
+\begin{corollary}\label{cor:shifts}
+Let $c_n=b_{n+2}$ for $n\geq0$ and
+$L(x)=\sum_{n\geq0}c_nx^n$. Then
+\begin{equation}\label{eq:L}
+ L=\frac{B-x}{x^2}=\frac{1-2x-s}{2x^2}
+  =\frac{2(1-x)}{1-2x+s},\qquad
+ x+L=(1+xL)^2.
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:Lcat}
+\begin{split}
+ L&=\frac{1-x}{1-2x}
+ C\left(\frac{x^2(1-x)}{(1-2x)^2}\right),\\
+ c_n&=\sum_{k=0}^{\lfloor n/2\rfloor}C_k
+ \sum_{i=0}^{\min(k+1,n-2k)}
+ (-1)^i\binom{k+1}{i}\binom{n-i}{n-2k-i}2^{n-2k-i}.
+\end{split}
+\end{equation}
+Consequently $c_0=c_1=1$ and
+$c_n=2c_{n-1}+\sum_{i=0}^{n-2}c_i c_{n-2-i}$ for $n\geq2$.
+These are the coefficients of A056010, and \eqref{eq:bilinear}
+holds with $b_j$ replaced by $c_j$ for every $n\geq0$.
+The row sums of A176703, indexed from row zero, are $b_{n+1}$.
+\end{corollary}
+\begin{proof}
+Substitute $B=x+x^2L$ into $B-B^2=x-x^3$ and cancel $x^2$;
+this gives \eqref{eq:L}, its recurrence and the initial values.
+Writing the same quadratic as
+$(1-2x)L=(1-x)+x^2L^2$ and substituting the Catalan equation
+gives \eqref{eq:Lcat}; the rationalized form in \eqref{eq:L}
+follows from $(1-2x)^2-D=4x^2(1-x)$. Its sum follows by expanding
+$\sum_{k\geq0}C_kx^{2k}(1-x)^{k+1}(1-2x)^{-2k-1}$.
+The bilinear statement follows from Corollary~\ref{cor:bilinear}
+with $n$ replaced by $n+2$.
+For the row sums, define the row polynomials from A176703
+\cite{oeist} by $f_0(y)=1$, $f_1(y)=y$, $f_2(y)=1$ and
+$f_n(y)=\sum_{i=0}^{n-1}f_i(y)f_{n-1-i}(y)$ for $n\geq3$.
+At $y=1$ this is exactly the defining convolution for $b_{n+1}$,
+with the same three initial values; induction proves the assertion.
+\end{proof}
+
+These deductions prove the algebraic and shifted-coefficient statements
+in A056010, not its lattice-path interpretation or its determinant
+claims. The polynomial change $Y=-B$ also gives
+$Y^2+Y=x^3-x$, the curve equation in Somos's 2023 comment in A025262.
+This change alone asserts no relation to an elliptic divisibility sequence.
+
+\subsection{The neighboring six-term conjecture}
+
+The coefficient argument has a useful general form, which is a
+specialization of Mathar's Theorem~5. If
+$p(x)=\sum_{j=0}^d p_jx^j\in\Q[x]$ has $p(0)=1$,
+degree $d$, and $U=(1-\sqrt p)/2=\sum_{n\geq1}u_nx^n$, with the
+square root of constant coefficient one, then
+\begin{equation}\label{eq:general}
+ pU'-\tfrac12p'U=-\tfrac14p',\qquad
+ \sum_{j=0}^{d}p_j(n-\tfrac{3j}2)u_{n-j}=0\quad(n>d).
+\end{equation}
+The first identity follows by differentiating $(1-2U)^2=p$;
+the second is its coefficient of $x^{n-1}$: the two contributions
+are $p_j(n-j)u_{n-j}$ and $-\tfrac12jp_ju_{n-j}$.
+
+\begin{corollary}\label{cor:neighbor}
+Let $d_1=d_2=d_3=d_4=1$ and
+$d_n=\sum_{i=1}^{n-1}d_i d_{n-i}$ for $n\geq5$, as in A025268
+\cite{oeisd}. Its generating function is
+\[
+ U(x)=\sum_{n\geq1}d_nx^n
+      =\frac{1-\sqrt{1-4x+4x^3+8x^4}}2.
+\]
+For $n\geq5$ it satisfies Kotesovec's recurrence
+\begin{equation}\label{eq:shortd}
+ R_n:=nd_n-(4n-6)d_{n-1}+(4n-18)d_{n-3}
+                      +8(n-6)d_{n-4}=0.
+\end{equation}
+For $n\geq6$ it satisfies Mathar's conjecture, signed
+25~January 2015 in A025268,
+\href{https://raw.githubusercontent.com/oeis/oeisdata/57bbd254e161585873f56950ff19ba6dc4aeb66c/seq/A025/A025268.seq\#L8}
+{revision~27, FORMULA line~8}:
+\begin{equation}\label{eq:longd}
+\begin{split}
+ nd_n+(n+1)d_{n-1}+10(-2n+5)d_{n-2}
+ &+2(2n-9)d_{n-3}\\
+ {}+2(14n-79)d_{n-4}+40(n-7)d_{n-5}&=0.
+\end{split}
+\end{equation}
+\end{corollary}
+\begin{proof}
+The initial values and convolution give $U-U^2=x-x^3-2x^4$.
+The root with constant coefficient zero is the displayed $U$.
+Apply \eqref{eq:general} with $p=1-4x+4x^3+8x^4$ to obtain
+\eqref{eq:shortd}. Expanding $R_n+5R_{n-1}$ gives
+\eqref{eq:longd}. Both shorter identities hold when $n\geq6$,
+which is also the full domain of six positive indices.
+\end{proof}
+
+This deduction uses the shorter recurrence posted by Kotesovec on the
+same day as Mathar's conjecture; the identities are not presented as
+new recurrence formulas. Both sources omit an onset. With $d_0=0$,
+the left side of \eqref{eq:longd} at $n=5$ is $-40$, rather than zero;
+the zero-extended formula at that index was not asserted in the source.
+
+Adamson's two constructions follow from the same convolution.
+For A025262 put $e_n=b_{n+1}$; for A025268 put $e_n=d_{n+1}$.
+The initial blocks are three or four ones. Splitting off the last
+term of the convolution gives, after that block,
+\[
+ e_n=e_{n-1}+\sum_{j=0}^{n-2}e_j e_{n-1-j},
+\]
+because $e_0=1$. This is precisely the source's $\Phi$ construction
+with its zero-based indexing.
+
+\subsection{Leading asymptotic constants}
+
+\begin{corollary}\label{cor:asymptotic}
+Let $\rho$ be the unique zero of $D=1-4x+4x^3$ in $(1/4,1/3)$.
+Then
+\begin{equation}\label{eq:asymptotic}
+\begin{aligned}
+ b_n&\sim\frac{\sqrt{3-8\rho}}{4\sqrt\pi}\rho^{-n}n^{-3/2},\\
+ a_n&\sim\frac{\sqrt{3-8\rho}}{4\sqrt\pi\rho(1-\rho)}
+                         \rho^{-n}n^{-3/2}.
+\end{aligned}
+\end{equation}
+\end{corollary}
+\begin{proof}
+The three roots of $D$ lie in $(-2,-1)$, $(1/4,1/3)$ and
+$(3/4,1)$, by sign changes in these disjoint intervals; thus
+$\rho$ is the unique root of smallest modulus, and is simple.
+Factoring at $\rho$ gives
+\[
+ \sqrt{D(x)}=\sqrt{-\rho D'(\rho)}(1-x/\rho)^{1/2}
+                  \bigl(1+O(1-x/\rho)\bigr).
+\]
+The branch with value one at zero continues to a slit neighborhood
+of the closed disc of radius $\rho$; the other two roots have larger
+modulus. The square-root transfer theorem
+\cite[Theorems~VI.1 and VI.4]{fs}, with
+$\Gamma(-1/2)=-2\sqrt\pi$, applied to $B=(1-\sqrt D)/2$
+gives the first equivalent. Since $D(\rho)=0$,
+$-\rho D'(\rho)=3-8\rho>0$.
+Multiplication by $1/[x(1-x)]$, analytic at $\rho$, gives the second.
+\end{proof}
+
+The first equivalent is Kotesovec's 5~June 2022 formula in A025262:
+$\rho^{-1}=4-4\rho^2$, and the trigonometric expression printed
+there lies in $(1/4,1/3)$ and solves $D(\rho)=0$ by the triple-angle
+identity. The second equivalent is a consequence for the partial sums,
+not a conjecture posed in the source.
+
+\clearpage
+\section{Coverage and verification}
+
+{\small\setlength{\tabcolsep}{4pt}
+\begin{longtable}{@{}p{0.34\textwidth}p{0.62\textwidth}@{}}
+\toprule
+Source statement & Coverage\\
+\midrule
+A157100 five-term conjecture & Reproved; prior proof framework: Mathar
+(2021), Theorem~5; explicit coefficients and onset in
+Theorem~\ref{thm:main}.\\
+A157100 binomial formula & Proved in \eqref{eq:asum}.\\
+A157100 partial sums and ratio comment & Partial sums proved in
+\eqref{eq:partial}; printed ratio refuted-and-corrected by
+$A/B=1/[x(1-x)]$. The partial-sum identification is already
+in the source's 2022 comment.\\
+A025262 quadratic equation and convolution & Reproved in the proof of
+Corollary~\ref{cor:coeff}; the quadratic formula is credited to Somos (2000).\\
+A025262 binomial formula and linear recurrence & Reproved in
+\eqref{eq:bsum} and \eqref{eq:brec}; prior formulas of Kruchinin (2013)
+and Kotesovec (2015).\\
+A025262 and A056010 bilinear formula & Proved in
+Corollaries~\ref{cor:bilinear}--\ref{cor:shifts}; formula due to
+Somos (2015), obtained from Kotesovec's linear recurrence.\\
+A025262 and A025268 Adamson constructions & Proved: putting
+$e_n=b_{n+1}$ or $d_{n+1}$ gives
+$e_n=e_{n-1}+\sum_{j=0}^{n-2}e_j e_{n-1-j}$ for
+$n\geq3$ or $n\geq4$, after three or four initial ones, respectively.\\
+A176703 row sums; A056010 shifts and g.f. & Proved in
+Corollary~\ref{cor:shifts}; the source's algebraic identities are
+rederived with their offsets.\\
+A025268 six-term conjecture & Proved for $n\geq6$ in
+Corollary~\ref{cor:neighbor}, using the shorter Kotesovec (2015)
+formula; its general mechanism is Mathar (2021).\\
+A025262 asymptotic; A157100 consequence & Prior formula of Kotesovec
+(2022) rederived in Corollary~\ref{cor:asymptotic}; the A157100
+consequence is not posed in the source.\\
+A025262 curve equation & Proved by $Y=-B$; no elliptic-divisibility
+claim follows from that substitution alone.\\
+A025262 ascent sequences & Prior proof cited: Callan (2019),
+\S6, Theorem~5 \cite{callan}, including the offset $b_{n+1}$
+for objects of length $n$.\\
+A056010 path interpretation and generalized Somos-5 number wall &
+Not covered by these coefficient proofs. Its alternative Catalan
+form and binomial sum are proved in \eqref{eq:Lcat}.\\
+A157100 Hankel transform; A157101 and its linked Somos variants &
+Not covered by the coefficient argument. Barry (2019), Example~45
+\cite{oeish,barry}, gives related A157101 Hankel context; no new assertion
+about these determinants is made. Yura (2014), \S3,
+and Barry (2023), \S8 \cite{yura,barry2023}, give the related
+A025262/A056010 elliptic and Hankel constructions.\\
+\bottomrule
+\end{longtable}}
+
+The pinned Lean source
+\href{https://github.com/the-omega-institute/trureturing/blob/962b1e14510f845c23345d34b4fb8205b2ddc2bd/D5/S1/Recurrence/Algebraic/MatharA157100FiveTermRecurrence.lean}
+{\texttt{MatharA157100FiveTermRecurrence.lean}}
+defines \texttt{A} by \eqref{eq:A}, defines \texttt{a} as its rational
+coefficients, and its declaration \texttt{result} proves
+\texttt{claim}, exactly \eqref{eq:rec} for $n\geq4$.
+The declaration \texttt{cat\_ode} in the pinned dependency
+\href{https://github.com/the-omega-institute/trureturing/blob/962b1e14510f845c23345d34b4fb8205b2ddc2bd/D5/S1/Recurrence/A308815DFiniteRecurrence.lean}
+{\texttt{A308815DFiniteRecurrence.lean}}
+proves $x(1-4x)C'+(1-2x)C=1$; its \texttt{euler\_coeff}
+proves $[x^n](xF')=n[x^n]F$.
+The initial values and uniqueness in Theorem~\ref{thm:main},
+Corollaries~\ref{cor:coeff}--\ref{cor:asymptotic}, the ratio correction
+and the general identity \eqref{eq:general} have written proofs;
+they are separate from the statement of \texttt{result}.
+The accompanying \texttt{verify.py} uses integer arithmetic to compare
+the Catalan substitution, quadratic convolution and recurrence,
+and checks the displayed bilinear, shifted, row-sum and A025268 identities.
+Its ranges and exact polynomial checks are specified in the accompanying
+\texttt{README.md} and \texttt{verification.json}.
+These are finite checks alongside the all-index proofs above.
+
+\begin{thebibliography}{10}
+\small
+\bibitem{oeisa}
+OEIS Foundation Inc., \emph{A157100}, entry by Paul Barry,
+five-term conjecture by R.~J.~Mathar (5~February 2015), revision~14
+(22~September 2025), FORMULA; ratio comment (27~June 2022).
+\url{https://oeis.org/A157100}.
+\bibitem{mathar}
+R.~J.~Mathar, \emph{P-finite recurrences from generating functions with
+roots of polynomials}, arXiv:2109.02112v1 (2021), \S4.2, Theorem~5.
+\url{https://arxiv.org/abs/2109.02112v1}.
+\bibitem{eyz}
+S.~B.~Ekhad, M.~Yang and D.~Zeilberger,
+\emph{Automated proofs of many conjectured recurrences in the OEIS
+made by R.~J.~Mathar}, arXiv:1707.04654v2 (2017).
+\url{https://arxiv.org/abs/1707.04654v2}.
+\bibitem{oeisb}
+OEIS Foundation Inc., \emph{A025262}, entry by Clark Kimberling,
+revision~76 (5~November 2025), FORMULA; contributions of M.~Somos
+(2000), V.~Kruchinin (2013), V.~Kotesovec (2015).
+\url{https://oeis.org/A025262}.
+\bibitem{oeish}
+OEIS Foundation Inc., \emph{A157101}, entry by Paul Barry,
+revision~13 (22~September 2025).
+\url{https://oeis.org/A157101}.
+\bibitem{oeisd}
+OEIS Foundation Inc., \emph{A025268}, entry by Clark Kimberling,
+revision~27 (4~February 2025), FORMULA; conjecture of R.~J.~Mathar
+and generating function and recurrence of V.~Kotesovec (25~January 2015).
+\url{https://oeis.org/A025268}.
+\bibitem{oeist}
+OEIS Foundation Inc., \emph{A176703}, entry by Roger L.~Bagula,
+revision~13 (26~January 2024), FORMULA and row sums.
+\url{https://oeis.org/A176703}.
+\bibitem{oeisl}
+OEIS Foundation Inc., \emph{A056010}, entry by Michael Somos,
+revision~58 (23~July 2026), FORMULA.
+\url{https://oeis.org/A056010}.
+\bibitem{fs}
+P.~Flajolet and R.~Sedgewick, \emph{Analytic Combinatorics},
+Cambridge University Press, 2009, Chapter~VI,
+Theorems~VI.1 and VI.4.
+\url{https://algo.inria.fr/flajolet/Publications/book.pdf}.
+\bibitem{barry}
+P.~Barry, \emph{Generalized Catalan recurrences, Riordan arrays,
+elliptic curves, and orthogonal polynomials}, arXiv:1910.00875v1
+(2019), Example~45, p.~33.
+\url{https://arxiv.org/abs/1910.00875v1}.
+\bibitem{callan}
+D.~Callan, \emph{On Ascent, Repetition and Descent Sequences},
+arXiv:1911.02209v1 (2019), \S6, Theorem~5.
+\url{https://arxiv.org/abs/1911.02209v1}.
+\bibitem{yura}
+F.~Yura, \emph{Hankel Determinant Solution for Elliptic Sequence},
+arXiv:1411.6972v2 (2014), \S3.
+\url{https://arxiv.org/abs/1411.6972v2}.
+\bibitem{barry2023}
+P.~Barry, \emph{Integer sequences from elliptic curves},
+arXiv:2306.05025v2 (2023), \S8.
+\url{https://arxiv.org/abs/2306.05025v2}.
+\end{thebibliography}
+
+\noindent\small\textcopyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0).
+\end{document}

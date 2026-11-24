@@ -1,0 +1,15 @@
+{
+  "id": "oeis-a157100-five-term-recurrence",
+  "revision": 3,
+  "problem_ids": ["oeis-a157100-five-term-recurrence"],
+  "topic": "Mathar's five-term Catalan-transform recurrence, the generating-function ratio, and related coefficient identities",
+  "title": "A ratio correction and sibling identities for Mathar's Catalan-transform recurrence",
+  "creators": [
+    {"name": "Haobo Ma", "affiliation": "ChronoAI Pte Ltd, Singapore"},
+    {"name": "Wenlin Zhang", "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore"}
+  ],
+  "abstract": "Using Mathar's root-generating-function theorem (2021, Theorem 5), we give an alternative coefficient proof of his conjecture in OEIS A157100, revision 14, FORMULA line 11 (5 February 2015), for every n >= 4. We correct the generating-function ratio accompanying its partial-sum description and extend the calculation to the adjacent sequence A025262: its linear recurrence implies Somos's bilinear identity by elimination of the index. The same radical identity proves Mathar's six-term conjecture for A025268 on its fully defined domain n >= 6. We also derive the related coefficient formulas, shifted generating functions, and the leading asymptotic constants.",
+  "summary": "Complete written proofs of the five-term recurrence, initial values and uniqueness; the ratio B/A=x(1-x); Somos's bilinear identity; Mathar's six-term recurrence for A025268; shifted formulas and row sums; and leading asymptotics, with earlier formulas and methods credited. The cited Lean declaration result covers precisely the five-term recurrence over rational coefficients for n >= 4. Exact finite checks compare three constructions through index 1000 and agree with the public A157100, A025262 and A025268 coefficient tables on the specified ranges.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/962b1e14510f845c23345d34b4fb8205b2ddc2bd/D5/S1/Recurrence/Algebraic/MatharA157100FiveTermRecurrence.lean"
+}

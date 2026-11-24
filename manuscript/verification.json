@@ -1,0 +1,119 @@
+{
+  "a025262_external_table": {
+    "matched_terms": 1001,
+    "range": [
+      1,
+      1001
+    ],
+    "source_sha256": "a94cb6c32e64eb948532697e03c4e68d69124f2bc2dc6f4706377a4d54dc6f67"
+  },
+  "a025268_external_table": {
+    "matched_terms": 1000,
+    "range": [
+      1,
+      1000
+    ],
+    "source_sha256": "94bec6189535879653bc7d45a766226c8b31f76579cb1172b25d383730b45156"
+  },
+  "a025268_short_recurrence_range": [
+    5,
+    1000
+  ],
+  "a025268_six_term_range": [
+    6,
+    1000
+  ],
+  "a025268_zero_extended_n5": -40,
+  "a056010_bilinear_range": [
+    0,
+    995
+  ],
+  "a056010_binomial_and_convolution_range": [
+    0,
+    100
+  ],
+  "a176703_polynomial_row_sum_range": [
+    0,
+    30
+  ],
+  "adamson_constructions": "pass",
+  "arithmetic": "unbounded integers",
+  "asymptotic_constant_polynomial_reductions": "pass",
+  "bilinear_a025262_range": [
+    1,
+    997
+  ],
+  "bilinear_elimination_polynomial": "pass",
+  "binomial_formulas": "pass",
+  "coefficient_ode": "pass",
+  "constructions_compared": [
+    "Catalan substitution",
+    "quadratic convolution and partial sums",
+    "five-term recurrence"
+  ],
+  "external_oeis_table": {
+    "matched_terms": 1001,
+    "range": [
+      0,
+      1000
+    ],
+    "source_sha256": "621154f02e7db0d98534c358ece80c1ecf492fe4d7112689bbf512965be31711"
+  },
+  "general_radical_family": {
+    "coefficient_range": [
+      1,
+      30
+    ],
+    "polynomials": [
+      [
+        1,
+        -4,
+        0,
+        4
+      ],
+      [
+        1,
+        -4,
+        0,
+        4,
+        8
+      ],
+      [
+        1,
+        2,
+        -3,
+        5,
+        0,
+        7
+      ],
+      [
+        1,
+        0,
+        0,
+        -1
+      ]
+    ]
+  },
+  "general_radical_recurrence_coefficient": "p_j*(n-3*j/2)",
+  "main_sequence_range": [
+    0,
+    1000
+  ],
+  "polynomial_identities": "pass",
+  "prefix": [
+    1,
+    2,
+    3,
+    6,
+    14,
+    37,
+    105,
+    312
+  ],
+  "sequence_encoding_sha256": "be76e5c6ddd82a7a0b2ae088900b74409fa56dea2a121bf0c751a6303f037e7d",
+  "sibling_range": [
+    1,
+    1001
+  ],
+  "sibling_recurrence_and_positivity": "pass"
+}

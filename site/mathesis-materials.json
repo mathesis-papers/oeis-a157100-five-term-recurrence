@@ -1,0 +1,11 @@
+{
+  "schema": "mathesis.materials.v1",
+  "work": "oeis-a157100-five-term-recurrence",
+  "version": 3,
+  "repository_url": "https://github.com/mathesis-papers/oeis-a157100-five-term-recurrence",
+  "site_url": "https://papers.trureturing.org/oeis-a157100-five-term-recurrence/",
+  "doi": null,
+  "reading": {},
+  "slides": [],
+  "visualizations": []
+}
