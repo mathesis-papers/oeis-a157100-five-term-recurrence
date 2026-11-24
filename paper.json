@@ -28,9 +28,9 @@
         "name": "Wenlin Zhang"
       }
     ],
-    "concept_doi": null,
+    "concept_doi": "10.5281/zenodo.24487650",
     "current_version": 3,
-    "doi": null,
+    "doi": "10.5281/zenodo.24487651",
     "lean_source": {
       "revision": "962b1e14510f845c23345d34b4fb8205b2ddc2bd",
       "url": "https://github.com/the-omega-institute/trureturing/blob/962b1e14510f845c23345d34b4fb8205b2ddc2bd/D5/S1/Recurrence/Algebraic/MatharA157100FiveTermRecurrence.lean"

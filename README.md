@@ -5,13 +5,15 @@
 Using Mathar's root-generating-function theorem (2021, Theorem 5), we give an alternative coefficient proof of his conjecture in OEIS A157100, revision 14, FORMULA line 11 (5 February 2015), for every n >= 4. We correct the generating-function ratio accompanying its partial-sum description and extend the calculation to the adjacent sequence A025262: its linear recurrence implies Somos's bilinear identity by elimination of the index. The same radical identity proves Mathar's six-term conjecture for A025268 on its fully defined domain n >= 6. We also derive the related coefficient formulas, shifted generating functions, and the leading asymptotic constants.
 
 - PDF: [frozen public file](paper.pdf)
+- DOI: [https://doi.org/10.5281/zenodo.24487651](https://doi.org/10.5281/zenodo.24487651)
+- Concept DOI: [https://doi.org/10.5281/zenodo.24487650](https://doi.org/10.5281/zenodo.24487650)
 - License: CC-BY-4.0
 - Version: 3
 - Mathesis record: [oeis-a157100-five-term-recurrence](https://mathesis-omega-research.apps.chrono-ai.fun/papers/oeis-a157100-five-term-recurrence?version=3)
 
 ## How to cite
 
-Haobo Ma, Wenlin Zhang (2026). A ratio correction and sibling identities for Mathar's Catalan-transform recurrence. Mathesis, version 3. https://mathesis-omega-research.apps.chrono-ai.fun/papers/oeis-a157100-five-term-recurrence?version=3
+Haobo Ma, Wenlin Zhang (2026). A ratio correction and sibling identities for Mathar's Catalan-transform recurrence. Mathesis, version 3. https://doi.org/10.5281/zenodo.24487651
 
 ## Statement progress
 
